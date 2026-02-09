@@ -2,12 +2,19 @@
 
 import Link from "next/link";
 import { ArrowRight } from "lucide-react";
+import { motion } from "framer-motion";
 
 export default function HealthcareJourneyCTA() {
     return (
         <section className="py-20 md:py-28 bg-gray-50">
             <div className="w-[90%] mx-auto">
-                <div className="bg-primary-dark rounded-3xl px-8 md:px-16 pb-20 pt-16 lg:pb-24 md:pt-32 text-center">
+                <motion.div
+                    className="bg-primary-dark rounded-3xl px-8 md:px-16 pb-20 pt-16 lg:pb-24 md:pt-32 text-center"
+                    initial={{ opacity: 0, scale: 0.95 }}
+                    whileInView={{ opacity: 1, scale: 1 }}
+                    viewport={{ once: true, margin: "-100px" }}
+                    transition={{ duration: 0.7, ease: "easeOut" }}
+                >
                     <h2 className="font-poppins font-bold text-4xl md:text-5xl lg:text-6xl text-white mb-8 leading-tight">
                         Start Your Healthcare Journey<br />Without Stress
                     </h2>
@@ -21,7 +28,7 @@ export default function HealthcareJourneyCTA() {
                         Learn More
                         <ArrowRight className="w-5 h-5" />
                     </Link>
-                </div>
+                </motion.div>
             </div>
         </section>
     );

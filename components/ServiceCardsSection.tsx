@@ -2,6 +2,7 @@
 
 import Image from "next/image";
 import Link from "next/link";
+import { motion } from "framer-motion";
 
 const services = [
     {
@@ -35,7 +36,13 @@ export default function ServiceCardsSection() {
         <section className="py-16 bg-gray-50">
             <div className="w-[90%] mx-auto">
                 {/* Header Section */}
-                <div className="grid md:grid-cols-[1.2fr_1fr] gap-8 mb-20">
+                <motion.div
+                    className="grid md:grid-cols-[1.2fr_1fr] gap-8 mb-20"
+                    initial={{ opacity: 0, y: 50 }}
+                    whileInView={{ opacity: 1, y: 0 }}
+                    viewport={{ once: true, margin: "-100px" }}
+                    transition={{ duration: 0.6 }}
+                >
 
                     <div>
                         <h2 className="font-poppins font-bold text-3xl md:text-5xl text-dark leading-[1.4] md:leading-[1.45] tracking-wide">
@@ -47,33 +54,44 @@ export default function ServiceCardsSection() {
                             Whether it's booking a same-day appointment, seeing a specialist, or accessing your health records, Easy Clinic puts everything at your fingertips.
                         </p>
                     </div>
-                </div>
+                </motion.div>
 
                 {/* Service Cards Grid */}
                 <div className="grid md:grid-cols-2 gap-6 mt-32">
                     {services.map((service, index) => (
-                        <Link
+                        <motion.div
                             key={index}
-                            href={service.link}
-                            className="group relative h-[500px] md:h-[600px] rounded-3xl overflow-hidden shadow-lg hover:shadow-2xl transition-all duration-300"
+                            initial={{ opacity: 0, y: 60 }}
+                            whileInView={{ opacity: 1, y: 0 }}
+                            viewport={{ once: true, margin: "-100px" }}
+                            transition={{
+                                duration: 0.6,
+                                delay: index * 0.15,
+                                ease: "easeOut"
+                            }}
                         >
-                            <Image
-                                src={service.image}
-                                alt={service.title}
-                                fill
-                                className="object-cover group-hover:scale-105 transition-transform duration-300"
-                            />
-                            <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/40 to-transparent" />
+                            <Link
+                                href={service.link}
+                                className="group relative block h-[500px] md:h-[600px] rounded-3xl overflow-hidden shadow-lg hover:shadow-2xl transition-all duration-300"
+                            >
+                                <Image
+                                    src={service.image}
+                                    alt={service.title}
+                                    fill
+                                    className="object-cover group-hover:scale-105 transition-transform duration-300"
+                                />
+                                <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/40 to-transparent" />
 
-                            <div className="absolute bottom-0 bg-black/15 left-0 right-0 p-6 md:p-8">
-                                <h3 className="font-poppins font-bold text-xl md:text-2xl text-white mb-2">
-                                    {service.title}
-                                </h3>
-                                <p className="font-poppins text-sm md:text-base text-gray-200">
-                                    {service.description}
-                                </p>
-                            </div>
-                        </Link>
+                                <div className="absolute bottom-0 bg-black/30 left-0 right-0 p-6 md:p-8">
+                                    <h3 className="font-poppins font-bold text-xl md:text-2xl text-white mb-2">
+                                        {service.title}
+                                    </h3>
+                                    <p className="font-poppins text-sm md:text-base text-gray-200">
+                                        {service.description}
+                                    </p>
+                                </div>
+                            </Link>
+                        </motion.div>
                     ))}
                 </div>
             </div>
