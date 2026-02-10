@@ -7,7 +7,7 @@ import { motion } from "framer-motion";
 export default function AboutSection() {
     return (
         <section className="py-16 md:py-24 bg-white">
-            <div className="w-[95%] md:w-[90%] mx-auto">
+            <div className="w-[90%] max-w-[90%] mx-auto">
                 <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-20 items-center">
                     {/* Left Content */}
                     <motion.div
